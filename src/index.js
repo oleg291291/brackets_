@@ -30,7 +30,7 @@ module.exports = function check(str, bracketsConfig) {
       }
     }
 
-    else {
+    if (str[i] === closeBr) {
       if (str[i] === closeBr && (stack[stack.length - 1] !== openBr || stack.lenght < 1)) {
         return false;
       }
@@ -38,7 +38,9 @@ module.exports = function check(str, bracketsConfig) {
         stack.pop();
       }
     }
-    if (bracketsConfig.length > 1) {
+
+
+    
       if (str[i] === openBr2) {
         if (openBr2 === closeBr2 && stack.length > 0 && stack[stack.length - 1] === openBr2) {
         stack.pop();
@@ -48,7 +50,7 @@ module.exports = function check(str, bracketsConfig) {
       }
       }
 
-      else {
+      if (str[i] === closeBr2) {
         if (str[i] === closeBr2 && (stack[stack.length - 1] !== openBr2 || stack.lenght < 1)) {
           return false;
         }
@@ -56,8 +58,9 @@ module.exports = function check(str, bracketsConfig) {
           stack.pop();
         }
       }
-    }
-     if (bracketsConfig.length > 2) {
+
+
+     
       if (str[i] === openBr3) {
         if (openBr3 === closeBr3 && stack.length > 0 && stack[stack.length - 1] === openBr3) {
         stack.pop();
@@ -67,7 +70,7 @@ module.exports = function check(str, bracketsConfig) {
       }
       }
 
-      else {
+      if (str[i] === closeBr3) {
         if (str[i] === closeBr3 && (stack[stack.length - 1] !== openBr3 || stack.lenght < 1)) {
           return false;
         }
@@ -75,9 +78,12 @@ module.exports = function check(str, bracketsConfig) {
           stack.pop();
         }
       }
-    }
-  }
 
+
+
+
+
+  }
 
   if (stack.length == 0) {
     return true;
