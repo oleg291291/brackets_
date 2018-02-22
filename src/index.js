@@ -1,6 +1,6 @@
 module.exports = function check(str, bracketsConfig) {
   // your solution
-
+//3conf
   //  assert.equal(check('|(|)', config5), false);
   var stack = [];
 
