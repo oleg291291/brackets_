@@ -7,13 +7,14 @@ module.exports = function check(str, bracketsConfig) {
   var openBr, openBr2, openBr3, closeBr, closeBr2, closeBr3;
   openBr = bracketsConfig[0][0];
   closeBr = bracketsConfig[0][1];
-  openBr2 = bracketsConfig[0][0];
-  closeBr2 = bracketsConfig[0][1];
 
   if (bracketsConfig.length > 1) {
     openBr2 = bracketsConfig[1][0];
     closeBr2 = bracketsConfig[1][1];
-
+  }
+  if (bracketsConfig.length > 2) {
+    openBr3 = bracketsConfig[2][0];
+    closeBr3 = bracketsConfig[2][1];
   }
 
 
@@ -21,7 +22,12 @@ module.exports = function check(str, bracketsConfig) {
 
 
     if (str[i] === openBr) {
-      stack.push(str[i]);
+      if (openBr === closeBr && stack.length > 0 && stack[stack.length - 1] === openBr) {
+        stack.pop();
+      }
+      else {
+        stack.push(str[i]);
+      }
     }
 
     else {
@@ -32,17 +38,42 @@ module.exports = function check(str, bracketsConfig) {
         stack.pop();
       }
     }
-
-    if (str[i] === openBr2) {
-      stack.push(str[i]);
-    }
-
-    else {
-      if (str[i] === closeBr2 && (stack[stack.length - 1] !== openBr2 || stack.lenght < 1)) {
-        return false;
+    if (bracketsConfig.length > 1) {
+      if (str[i] === openBr2) {
+        if (openBr2 === closeBr2 && stack.length > 0 && stack[stack.length - 1] === openBr2) {
+        stack.pop();
       }
       else {
+        stack.push(str[i]);
+      }
+      }
+
+      else {
+        if (str[i] === closeBr2 && (stack[stack.length - 1] !== openBr2 || stack.lenght < 1)) {
+          return false;
+        }
+        else {
+          stack.pop();
+        }
+      }
+    }
+     if (bracketsConfig.length > 2) {
+      if (str[i] === openBr3) {
+        if (openBr3 === closeBr3 && stack.length > 0 && stack[stack.length - 1] === openBr3) {
         stack.pop();
+      }
+      else {
+        stack.push(str[i]);
+      }
+      }
+
+      else {
+        if (str[i] === closeBr3 && (stack[stack.length - 1] !== openBr3 || stack.lenght < 1)) {
+          return false;
+        }
+        else {
+          stack.pop();
+        }
       }
     }
   }
