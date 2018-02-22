@@ -3,16 +3,20 @@ module.exports = function check(str, bracketsConfig) {
   // check('()', [['(', ')']]) // -> true
   // check('())(', [['(', ')']]) // -> false
   var stack = [];
-  var result;
+
+
+  var openBr = bracketsConfig[0][0];
+  var closeBr = bracketsConfig[0][1];
+
   for (var i = 0; i < str.length; i++) {
 
     
-    if (str[i] === '(') {
+    if (str[i] === openBr) {
       stack.push(str[i]);
     }
     
     else {
-      if (str[i] === ')' && (stack[stack.length - 1] !== '(' || stack.lenght < 1)) {
+      if (str[i] === closeBr && (stack[stack.length - 1] !== openBr || stack.lenght < 1)) {
         return false;
       }
       else {
@@ -20,8 +24,12 @@ module.exports = function check(str, bracketsConfig) {
       }
     }
   }
+  
+  
 if (stack.length == 0){
   return true;
 }
+  
 
 }
+
