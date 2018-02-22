@@ -17,16 +17,16 @@ module.exports = function check(str, bracketsConfig) {
     closeBr3 = bracketsConfig[2][1];
   }
   if (bracketsConfig.length > 3) {
-    openBr3 = bracketsConfig[3][0];
-    closeBr3 = bracketsConfig[3][1];
+    openBr4 = bracketsConfig[3][0];
+    closeBr4 = bracketsConfig[3][1];
   }
   if (bracketsConfig.length > 4) {
-    openBr3 = bracketsConfig[4][0];
-    closeBr3 = bracketsConfig[4][1];
+    openBr5 = bracketsConfig[4][0];
+    closeBr5 = bracketsConfig[4][1];
   }
   if (bracketsConfig.length > 5) {
-    openBr3 = bracketsConfig[5][0];
-    closeBr3 = bracketsConfig[5][1];
+    openBr6 = bracketsConfig[5][0];
+    closeBr6 = bracketsConfig[5][1];
   }
 
 
